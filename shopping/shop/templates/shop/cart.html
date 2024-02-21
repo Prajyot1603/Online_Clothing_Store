@@ -31,7 +31,7 @@
                         <th>PRICE</strong></th>
                         <th>QUANTITY</strong></th>
                         <th>TOTAL</strong></th>
-                        <th>ACTION</strong></th>
+                        <!-- <th>ACTION</strong></th> -->
                     </tr>
 				</thead>
 				{% for item in items %}
@@ -50,7 +50,6 @@
 					</td>
                     
 					<td ><p>₹ {{item.get_total}}</p></td>
-                    <td><a  class="btn btn-outline-danger" href="{% url 'cart_delete' item.id %}">Remove from cart</a></td>
                     </tr>
 				</tbody>
 				{% endfor %}
