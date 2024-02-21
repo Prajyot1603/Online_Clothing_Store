@@ -1,0 +1,60 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element">
+
+				<a  class="btn btn-outline-dark alert alert-info"  href="{% url 'store' %}" style="margin-left: 440px;">&#x2190; <B>Continue Shopping</B></a>
+
+				<br>
+				<br>
+				<table class="table">
+					<tr>
+						<th><h5>Items: <strong style="color: red;">{{order.get_cart_items}}</strong></h5></th>
+						<th><h5>Total:<strong style="color: red;">₹ {{order.get_cart_total|floatformat:2}}</strong></h5></th>
+						<th>
+							<a  style="float:right; margin:5px;" class="btn btn-outline-success" href="{% url 'checkout' %}">Checkout</a>
+						</th>
+					</tr>
+				</table>
+
+			</div>
+
+			<br>
+			
+			<table class="table table-bordered shadow p-3 mb-5 bg-white rounded">
+				<thead>
+                    <tr>
+                        <th>PRODUCT</strong></th>
+                        <th>ITEM</strong></th>
+                        <th>PRICE</strong></th>
+                        <th>QUANTITY</strong></th>
+                        <th>TOTAL</strong></th>
+                        <th>ACTION</strong></th>
+                    </tr>
+				</thead>
+				{% for item in items %}
+				<tbody>
+                    <tr>
+					<td ><img class="row-image" src="{{item.product.image.url}}"></td>
+					<td ><p>{{item.product.name}}</p></td>
+					<td ><p>₹ {{item.product.price|floatformat:2}}</p></td>
+					<td >
+						<p class="quantity" style="color: rgb(42, 20, 20);">{{item.quantity}}</p>
+						<div class="quantity">
+							<img data-product={{item.product.id}} data-action="add" class="chg-quantity update-cart" src="{% static  'images/plus.png' %}" style="height: 20px; width: 15px;">
+							
+							<img data-product={{item.product.id}} data-action="remove" class="chg-quantity update-cart" src="{% static  'images/minus.jpg' %}" style="height: 20px; width: 15px; margin-left: 5px;">
+					    </div>
+					</td>
+                    
+					<td ><p>₹ {{item.get_total}}</p></td>
+                    <td><a  class="btn btn-outline-danger" href="{% url 'cart_delete' item.id %}">Remove from cart</a></td>
+                    </tr>
+				</tbody>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock content %}

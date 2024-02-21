@@ -1,0 +1,136 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+    {% block content %}
+    <body style="background-color: rgb(239, 255, 255);">
+    <h3 class="navbar navbar-expand navbar-light bg-dark topbar mb-4 "> 
+        <i style="color: rgb(129, 129, 255); ">Get access to your Orders, Wishlist and Recommendations....</i>
+      </h3>
+      {% if messages %}
+      {% for message in messages %}
+          {% if message.tags == "success" %}
+              <div class="alert alert-success alert-dismissible fade show">
+                  <strong>{{ message }}</strong>
+                  <span style="
+                      margin-left: 15px;
+                      color: black;
+                      font-weight: bold;
+                      float: right;
+                      font-size: 22px;
+                      line-height: 20px;
+                      cursor: pointer;
+                      transition: 0.3s;"
+                      class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+              </div>
+          {% endif %}
+      {% endfor %}
+      {% endif %}
+      
+        <form  class="login-form" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
+                    {% if form_data.errors %}
+                        {% for field in form_data %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{error|escape}}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% for error in form_data.non_field_errors %}
+                    <div class="alert alert-warning">
+                        <strong>{{error|escape}}</strong>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-4 offset-2">
+                    <div class="form-group position-relative">
+                        <label>First Name <span class="text-danger">*</span></label>
+                        {{form_data.first_name}}
+                    </div>
+                    {% if form_data.first_name.errors %}
+                        {% for error in first_name.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group position-relative">
+                        <label>Last Name <span class="text-danger">*</span></label>
+                        {{form_data.last_name}}
+                    </div>
+                    {% if form_data.last_name.errors %}
+                        {% for error in last_name.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                <div class="col-md-4 offset-2">
+                    <div class="form-group position-relative">
+                        <label>UserName <span class="text-danger">*</span></label>
+                        {{form_data.username}}
+                    </div>
+                    {% if form_data.username.errors %}
+                        {% for error in username.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group position-relative">
+                        <label>Your Email <span class="text-danger">*</span></label>
+                        {{form_data.email}}
+                    </div>
+                    {% if form_data.email.errors %}
+                        {% for error in email.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                <div class="col-md-4 offset-2">
+                    <div class="form-group position-relative">
+                        <label>Your Password <span class="text-danger">*</span></label>
+                        {{form_data.password1}}
+                    </div>
+                    {% if form_data.password1.errors %}
+                        {% for error in password1.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group position-relative">
+                        <label>Confirm Password <span class="text-danger">*</span></label>
+                        {{form_data.password2}}
+                    </div>
+                    {% if form_data.password2.errors %}
+                        {% for error in password2.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{error|escape}}</strong>
+                            </div>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+                <div class= "col-md-8 offset-5">
+                    <label><span class="text-danger"></span></label>
+                </div >
+                <div class="col-md-8 offset-2">
+                    <button class="btn btn-primary w-100" type="submit">Register</button>
+                </div>
+
+            </div>
+        </form>
+    </body>
+    {% endblock %}

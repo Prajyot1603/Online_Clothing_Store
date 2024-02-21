@@ -1,0 +1,64 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h4 class="text-center alert alert-info left-side-product-box pb-3">PRODUCTS DETAILS</h4>
+
+    <div class="box-element">
+
+        <a  class="btn btn-outline-dark alert alert-info"  href="{% url 'store' %}">&#x2190; <B>Continue Shopping</B></a>
+
+        
+
+    
+    <br>
+    <div class="col-lg-16 border p-3 main-section bg-white">
+       
+        <div class="row m-0">
+            <div class="col-lg-4 left-side-product-box pb-3">
+                <img src="{{ data.image.url }}" class="border p-3" width="300px;">
+            </div>
+            <div class="col-lg-8">
+                <div class="right-side-pro-detail border p-3 m-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span>WELCOME....</span>
+                            <hr>
+                            <p class="m-0 p-0" ><b>{{ data.name }}</b></p>
+                        </div>
+                        
+                        <div class="col-lg-12"><hr>
+                            <p class="m-0 p-0 price-pro"><b>Price:</b><h5 style="color: red;"> ₹ {{ data.price }}</h5></p>
+                            <hr class="p-0 m-0">
+                        </div>
+                       
+                        <div class="col-lg-12 mt-3">
+                            <div class="row">
+                                <div class="col-lg-6 pb-2">
+                                    <button data-product="{{data.id}}" data-action="add" class="btn btn-danger w-100 add-btn update-cart">Add to Cart</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a href="#" class="btn btn-success w-100">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <h4>Product Description :</h4>
+                <div class="col-lg-12">
+                    <p class="m-0 p-0" >{{ data.description }}</p>
+                </div>
+                <br>
+                
+                <h4>Rating and Reviews:</h4>
+            </div>
+            
+        </div>
+    
+    </div>
+    </div>
+</div>
+{% endblock %}

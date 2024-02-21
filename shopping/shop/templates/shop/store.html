@@ -1,0 +1,24 @@
+{% extends 'shop/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for product in products %}
+        <div class="col-lg-4">
+            <div class="card" style="height: 500px; cursor: pointer;">
+            <img  class="thumbnail" src="{{ product.image.url }}">
+            <div class="card-body">
+                <h6><strong>{{product.name}}</strong></h6>
+                <hr>
+                <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-primary add-btn update-cart">Add to Cart</button>
+                <a class="btn btn-outline-success" href="{% url 'product_detail' pk=product.pk %}">View</a>
+                <h4 style="display: inline-block; float: right"><strong>
+                ₹{{product.price|floatformat:2}}</strong></h4>
+            </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+{% endblock %}
+
+
+
